@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ObserverPatternDemo
 {
-    public class Subject : ISubject
+    public class Channel : IChannel
     {
-        private List<Observer> observers = new List<Observer>();
+        private List<Subscribers> subscribers = new List<Subscribers>();
         private int _int;
 
-        public int Inventory
+        public int Content
         {
             get
             {
@@ -27,21 +27,21 @@ namespace ObserverPatternDemo
             }
         }
 
-        public void Subscribe(Observer observer)
+        public void Subscribe(Subscribers observer)
         {
-            observers.Add(observer);
+            subscribers.Add(observer);
         }
 
-        public void Unsubscribe(Observer observer)
+        public void Unsubscribe(Subscribers observer)
         {
-            observers.Remove(observer);
+            subscribers.Remove(observer);
         }
 
         public void Notify()
         {
-            foreach (var observer in observers)
+            foreach (var subscriber in subscribers)
             {
-                observer.Update();
+                subscriber.Update();
             }
         }
     }
